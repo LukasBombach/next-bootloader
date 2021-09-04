@@ -1,3 +1,9 @@
-import type { FC } from "react";
+import { Head } from "next/document"; // eslint-disable-line @next/next/no-document-import-in-page
 
-export const Bootloader: FC = ({ children }) => <>{children}</>;
+export class Bootloader extends Head {
+  render() {
+    console.log(this.context);
+
+    return <>{this.props.children}</>;
+  }
+}
