@@ -1,4 +1,3 @@
-import { Head } from "next/document"; // eslint-disable-line @next/next/no-document-import-in-page
 import type { VFC } from "react";
 
 export type LoadingPriority = "high" | "medium" | "low";
@@ -9,16 +8,14 @@ export interface ScriptProps {
 }
 
 export const HighPriorityScript = ({ src }: Pick<ScriptProps, "src">) => (
-  <Head>
+  <>
     <link href={src} rel="preload" as="script" />
     <script async src={src} />
-  </Head>
+  </>
 );
 
 export const MediumPriorityScript = ({ src }: Pick<ScriptProps, "src">) => (
-  <Head>
-    <script async src={src} />
-  </Head>
+  <script async src={src} />
 );
 
 export const LowPriorityScript = ({ src }: Pick<ScriptProps, "src">) => {

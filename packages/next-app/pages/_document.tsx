@@ -1,12 +1,10 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Main } from "next/document";
 import { LoadInOrder, Font, Script, InlineScript } from "../lib/bootloader";
 
 class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
-
         <LoadInOrder>
           <InlineScript>{`console.log("Some consent init code");`}</InlineScript>
           <InlineScript>{`console.log("Some ads init code");`}</InlineScript>
@@ -21,7 +19,6 @@ class MyDocument extends Document {
 
         <body>
           <Main />
-          <NextScript />
         </body>
       </Html>
     );
