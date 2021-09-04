@@ -90,12 +90,12 @@ export class LoadInOrder extends Head {
 
     return (
       <>
-        {this.getPreloadDynamicChunks()}
+        {/* this.getPreloadDynamicChunks()}
         {this.getPreloadMainLinks(files)}
         {this.getPolyfillScripts()}
         {this.getPreNextScripts()}
         {this.getDynamicChunks(files)}
-        {this.getScripts(files)}
+        {this.getScripts(files) */}
       </>
     );
   }

@@ -1,11 +1,11 @@
-import Document, { Html, Main } from "next/document";
-import { LoadInOrder, Font, Script, InlineScript } from "../lib/bootloader";
+import Document, { Html, Main, Head, NextScript } from "next/document";
+import { Bootloader, Font, Script, InlineScript } from "lib/bootloader";
 
 class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <LoadInOrder>
+        <Bootloader>
           <InlineScript>{`console.log("Some consent init code");`}</InlineScript>
           <InlineScript>{`console.log("Some ads init code");`}</InlineScript>
 
@@ -15,10 +15,13 @@ class MyDocument extends Document {
           <Script src="/3rdparty/consent.js" loadingPriority="high" />
           <Script src="/3rdparty/ads.js" />
           <Script src="/3rdparty/tracking.js" />
-        </LoadInOrder>
+
+          <Head />
+        </Bootloader>
 
         <body>
           <Main />
+          <NextScript />
         </body>
       </Html>
     );
