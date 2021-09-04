@@ -1,27 +1,24 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { Font } from "../lib/bootloader";
-
-import type { DocumentContext } from "next/document";
+import { LoadInOrder, Font, Script, InlineScript } from "../lib/bootloader";
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
-  }
-
   render() {
     return (
       <Html>
         <Head />
-        <Font
-          name="KaiseiHarunoUmi"
-          truetype="/fonts/KaiseiHarunoUmi-Regular.ttf"
-        />
-        <Font
-          name="KaiseiHarunoUmi"
-          truetype="/fonts/KaiseiHarunoUmi-Bold.ttf"
-          weight="bold"
-        />
+
+        <LoadInOrder>
+          <InlineScript>{`console.log("Some consent init code");`}</InlineScript>
+          <InlineScript>{`console.log("Some ads init code");`}</InlineScript>
+
+          <Font name="Kaisei" truetype="/fonts/kaisei-regular.ttf" />
+          <Font name="Kaisei" truetype="/fonts/kaisei-bold.ttf" weight="bold" />
+
+          <Script src="/3rdparty/consent.js" loadingPriority="high" />
+          <Script src="/3rdparty/ads.js" />
+          <Script src="/3rdparty/tracking.js" />
+        </LoadInOrder>
+
         <body>
           <Main />
           <NextScript />
